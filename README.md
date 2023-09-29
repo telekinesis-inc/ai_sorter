@@ -1,53 +1,31 @@
-# WebExtensionTemplate
+# AI Sort Extension
 
-Create a browser extension for Chrome, Firefox and Safari in no time.
-
-WebExtensionTemplate lets you skip the boilerplate and write a [Web Extension](https://developer.mozilla.org/en-US/docs/Glossary/WebExtensions) with [TypeScript](https://www.typescriptlang.org) and [Svelte](https://www.typescriptlang.org) or [React](https://react.dev).
-
-## Features
-
-- Popup window written in Svelte ([or React](https://github.com/kyle-n/WebExtensionTemplate/tree/react)) when you click the extension toolbar icon 
-- Extension settings page written in Svelte ([or React](https://github.com/kyle-n/WebExtensionTemplate/tree/react))
-- Lightning-fast build process to compile source code with [esbuild](https://esbuild.github.io)
-- Build scripts to package the extension for Chrome, Firefox and Safari
-- Sourcemaps for local builds
-- Minifies production builds
-- iOS and macOS container apps written in SwiftUI for the Safari extension (no Swift / SwiftUI knowledge required to use)
-- [Prettier](https://prettier.io) formatting
-- [webextension-polyfill](https://www.npmjs.com/package/webextension-polyfill) to add a couple missing Promise-based APIs to Chrome
-
-### Future roadmap
-
-- Separate branch with the popup and settings page written in React
-- Tests
-
-## Setup
-
-First, fork this repository. Then, follow the steps below. By the end of this, you should be able to search across the project for `REPLACEME` and get no results.
-
-### All browsers
-
-- Update `Extension/_locales/en/messages.json` with an extension name and description
-- Update `Extension/README.md` with your app's name
-- Open `Extension/package.json` and update...
-	- `name` with your app's name
-	- `author` with your name
-	- `license` with the app's license
-- Open `Extension/public/settings.html` and update the `<title>` with your app's name
-- Delete the `<link>` in `Extension/settings.html` if you don't like the provided CSS
-- Create a toolbar icon for your app
-	- Should be a small, simple glyph that makes sense when monochromatic in Safari
-	- Make versions in 16, 19, 32, 38, 48 and 72-pixel sizes saved to `Extension/images`
-	- Should be named `toolbar_Qpx.png` where `Q` is 16, 19, etc
-- Make an app icon that is 1024 x 1024
-	- Copy versions of it to `Extension/images` in 48, 96, 128, 256 and 512-pixel sizes 
-	- Should be named `app_icon_Qpx.png` , where `Q` is 48, 96, etc
-
+This Chrome and Firefox extension lets you search through content on any webpage using AI embeddings. 
+1. You provide a description of what you are looking for
+2. Select the content you want to analyze
+3. The extension sorts the content by embedding similarity.
+4. You can edit your description and iterate
 ### Firefox
 
-- Update `manifest.json` with a Firefox extension id (under `gecko` > `id`) in the format `appname@domain.com` 
+To install in Firefox:
+
+1. Switch to the `firefox` branch: `git checkout firefox` 
+2. Run `npm run build`
+3. Open Firefox's [debugging page](about:debugging#/runtime/this-firefox) (`about:debugging#/runtime/this-firefox`)
+4. Add the extension
+
+
+### Chrome
+
+1. Switch to the `main` branch: `git checkout main` 
+2. Run `npm run build`
+3. Open Chrome's [extensions page](chrome://extensions/) (`chrome://extensions/`)
+4. Load this unpackaged extension.
+
 
 ### Safari
+
+I have not tried this, but this extension was forked from an extension Template that had the following instructions
 
 Do the following steps in Xcode.
 
@@ -77,21 +55,3 @@ Note: “Open the project config” means double-click the app name at the top o
 - macOS app icon
 	- Reduce the size of the app icon by 20% while keeping the canvas the same size
 	- Add the app icon to `macOS (App)/macOS Assets` as `AppIcon` with all the required sizes
-
-## Building your extension
-
-All `npm` commands should be run in `Extension`. Safari extensions should be built in Xcode. 
-
-| Browser | Local | Production |
-| - | - | - |
-| Chrome | `npm run build` | `npm run build:chrome` |
-| Firefox | `npm run build` | `npm run build:firefox` |
-| Safari | Product > Build | Product > Archive |
-
-- `console.log` calls are stripped out of prod builds
-- The Chrome build script generates a zip that can be uploaded to the Chrome Web Store
-- The Firefox build script generates a zip for the Mozilla Add-On Store as well as a zip of the source code for the store review
-
-## Other notes 
-
-- Firefox [does not support service workers in the background](https://github.com/mozilla/web-ext/issues/2532#issuecomment-1285039773), so I would maintain a separate branch `firefox` that runs `dist/background.js` as a background script

@@ -10,3 +10,7 @@ Extension/dist
 Shared\ (Extension)/Resources/dist/
 **/xcuserdata
 **/*.xcuserstate
+
+*.zip
+*.pem
+*.crx

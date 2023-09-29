@@ -22,13 +22,13 @@
 
   "content_scripts": [
     {
+      "run_at": "document_start",
       "js": ["dist/content.js"],
-      "matches": ["*://example.com/*"]
+      "matches": ["*://*/*"]
     }
   ],
 
   "action": {
-    "default_popup": "public/popup.html",
     "default_icon": {
       "16": "images/toolbar_16px.png",
       "19": "images/toolbar_19px.png",
@@ -39,16 +39,11 @@
     }
   },
 
-  "permissions": ["storage"],
-
-  "options_ui": {
-    "page": "public/settings.html",
-    "open_in_tab": true
-  },
+  "permissions": ["storage", "activeTab"],
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "REPLACEME"
+      "id": "aisorter@payperrun.com"
     }
   }
 }

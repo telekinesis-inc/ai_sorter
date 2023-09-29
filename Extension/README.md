@@ -1,4 +1,6 @@
-# REPLACEME
+# PayPerRun
+
+Call PayPerRun's services from any webpage with this Extension.
 
 ## Building and running locally
 

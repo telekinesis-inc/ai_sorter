@@ -28,34 +28,34 @@ async function main() {
     entryPoints: ['./src/background.ts'],
     outfile: './dist/background.js'
   });
+  
+  // const popupJob = build({
+  //   ...commonConfig,
+  //   entryPoints: ['./src/popup/popup.ts'],
+  //   outbase: './src/popup',
+  //   outdir: './dist',
+  //   mainFields: ['svelte', 'module', 'main', 'browser'],
+  //   plugins: [
+  //     sveltePlugin({
+  //       preprocess: sveltePreprocess()
+  //     })
+  //   ]
+  // });
 
-  const popupJob = build({
-    ...commonConfig,
-    entryPoints: ['./src/popup/popup.ts'],
-    outbase: './src/popup',
-    outdir: './dist',
-    mainFields: ['svelte', 'module', 'main', 'browser'],
-    plugins: [
-      sveltePlugin({
-        preprocess: sveltePreprocess()
-      })
-    ]
-  });
+  // const settingsJob = build({
+  //   ...commonConfig,
+  //   entryPoints: ['./src/settings/settings.ts'],
+  //   outbase: './src/settings',
+  //   outdir: './dist',
+  //   mainFields: ['svelte', 'module', 'main', 'browser'],
+  //   plugins: [
+  //     sveltePlugin({
+  //       preprocess: sveltePreprocess()
+  //     })
+  //   ]
+  // });
 
-  const settingsJob = build({
-    ...commonConfig,
-    entryPoints: ['./src/settings/settings.ts'],
-    outbase: './src/settings',
-    outdir: './dist',
-    mainFields: ['svelte', 'module', 'main', 'browser'],
-    plugins: [
-      sveltePlugin({
-        preprocess: sveltePreprocess()
-      })
-    ]
-  });
-
-  return Promise.all([contentJob, backgroundJob, popupJob, settingsJob]).then(
+  return Promise.all([contentJob, backgroundJob]).then(
     () => console.log('⚡ Compiled')
   );
 }
